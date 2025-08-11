@@ -27,6 +27,7 @@ const sendEmail = async (data) => {
           <div style="margin-top: 20px; background: #F9F6F2; padding: 20px; border-left: 4px solid #C5A95E;">
             <p><strong>Nombre:</strong> ${data.name}</p>
             <p><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></p>
+            <p><strong>Teléfono:</strong> ${data.phone}</p>
             <p><strong>Mensaje:</strong><br>${data.textArea.replace(/\n/g, '<br>')}</p>
 
             ${
@@ -69,7 +70,7 @@ const sendEmail = async (data) => {
     from: process.env.EMAIL_USER,
     to: process.env.RECIPIENT_EMAIL,
     subject: 'Nuevo mensaje desde Herencia',
-    text: `Nombre: ${data.name}\nCorreo: ${data.email}\nMensaje:\n${data.textArea}`,
+    text: `Nombre: ${data.name}\nCorreo: ${data.email}\nTeléfono: ${data.phone}\nMensaje:\n${data.textArea}`,
     html: htmlContent,
     attachments
   }
