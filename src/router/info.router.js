@@ -12,10 +12,12 @@ const upload = multer({ storage })
 
 router.post('/submit', upload.single('image'), async (req, res) => {
   try {
-    const { name, email, textArea } = req.body
+    const { name, email, phone, textArea } = req.body
 
-    if (!name || !email) {
-      return res.status(400).json({ error: 'Name and email are required' })
+    if (!name || !email || !phone) {
+      return res
+        .status(400)
+        .json({ error: 'Name, email, and phone are required' })
     }
 
     const image = req.file
@@ -28,6 +30,7 @@ router.post('/submit', upload.single('image'), async (req, res) => {
     const info = new Info({
       name,
       email,
+      phone,
       textArea,
       image
     })
